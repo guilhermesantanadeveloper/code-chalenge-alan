@@ -10,7 +10,7 @@ class LoginViewModel : ViewModel() {
     }
 
     fun validatePasswordSize(password: String): Boolean {
-        return password.length >= 5
+        return password.length >= 3
     }
 
     fun checkCredentials(

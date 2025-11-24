@@ -13,9 +13,13 @@ import androidx.core.view.WindowInsetsCompat
 
 class LoginActivity : AppCompatActivity() {
 
-    private val userNameEdt = findViewById<EditText>(R.id.userName)
-    private val passwordEdt = findViewById<EditText>(R.id.userPassword)
-    private val btnLogin = findViewById<Button>(R.id.btnLogin)
+    private val userNameEdt by lazy {
+        findViewById<EditText>(R.id.userName)
+    }
+    private val passwordEdt by lazy {
+        findViewById<EditText>(R.id.userPassword)
+    }
+    private val btnLogin by lazy { findViewById<Button>(R.id.btnLogin) }
 
     private val viewModel = LoginViewModel()
 
@@ -28,10 +32,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun doLogin() {
-        val userName = userNameEdt.text.toString().trim()
-        val password = passwordEdt.text.toString().trim()
-
         btnLogin.setOnClickListener {
+
+            val userName = userNameEdt.text.toString()
+            val password = passwordEdt.text.toString()
 
             if (viewModel.checkCredentialsAreNotEmpty(userName, password)) {
                 toast("Credentials are empty. Fill all the fields")
